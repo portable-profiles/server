@@ -1,0 +1,32 @@
+{
+  "name": "@paladin-privacy/server",
+  "version": "0.0.1",
+  "description": "Server for the distributed social network Paladin",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/paladin-privacy/server.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/paladin-privacy/server/issues"
+  },
+  "homepage": "https://github.com/paladin-privacy/server#readme",
+  "dependencies": {
+    "@paladin-privacy/profiles": "0.0.10",
+    "graphql": "^14.3.1",
+    "graphql-tag": "^2.10.1",
+    "graphql-tools": "^4.0.4",
+    "jest": "^24.8.0",
+    "lodash": "^4.17.11",
+    "typescript": "^3.5.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.15",
+    "ts-jest": "^24.0.2"
+  }
+}
