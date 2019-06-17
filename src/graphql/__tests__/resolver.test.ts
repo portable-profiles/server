@@ -3,6 +3,10 @@ import { createGraphQL } from "../resolver";
 import { MemoryPersistence } from '../../persistence/memory-persistence';
 import { Tables } from "../tables";
 
+const TEST_NAME = 'Test server';
+const TEST_DESCRIPTION = 'Server for testing';
+const TEST_DOMAIN = 'test.paladinprivacy.com';
+
 const ActivateMutation = `
   mutation ActivateMutation($owner: JSON!, $config: ConfigurationInput!) {
     activateServer(owner: $owner, config: $config) {
@@ -25,6 +29,7 @@ const RegisterMutation = `
       modifiedOn
       data
       banned
+      level
     }
   }
 `;
@@ -40,6 +45,7 @@ const GetProfileQuery = `
       modifiedOn
       data
       banned
+      level
     }
   }
 `;
@@ -69,7 +75,17 @@ test('register a profile and perform basic actions against it', async () => {
   const adminProfile = admin.toString();
 
   // Activate the server
-  const activateResult = await graphql(ActivateMutation, {}, { owner: adminProfile });
+  const config = {
+    name: TEST_NAME,
+    description: TEST_DESCRIPTION,
+    domain: TEST_DOMAIN,
+    private: true
+  };
+  const activateResult = await graphql(ActivateMutation, {}, {
+    owner: adminProfile,
+    config
+  });
+  expect(activateResult.data.activateServer).toEqual(config);
 
   // Create a profile and convert it to JSON
   const alice = new Profile();

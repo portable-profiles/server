@@ -3,10 +3,10 @@ import { buildSchema } from 'graphql';
 export const schema = buildSchema(`
   scalar JSON
 
-  type AccessLevel {
-    SUPER_ADMIN,
-    ADMIN,
-    MEMBER
+  enum AccessLevel {
+    SUPER_ADMIN
+    ADMIN
+    USER
   }
 
   input ConfigurationInput {
@@ -19,6 +19,7 @@ export const schema = buildSchema(`
   type Configuration {
     name: String
     description: String
+    domain: String
     private: Boolean
     installed: Boolean
     publicKey: String

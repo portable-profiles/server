@@ -21,20 +21,4 @@ export class AdminService {
     await persistence.addItem(Tables.CONFIG, ConfigKeys.PRIVATE_KEY, keychain.getPrivate());
     await persistence.addItem(Tables.CONFIG, ConfigKeys.INSTALLED, true);
   }
-
-  public static async getConfiguration(persistence: Persistence) {
-    const name = await persistence.getItem(Tables.CONFIG, ConfigKeys.NAME);
-    const description = await persistence.getItem(Tables.CONFIG, ConfigKeys.DESCRIPTION);
-    const priv = await persistence.getItem(Tables.CONFIG, ConfigKeys.PRIVATE);
-    const installed = await persistence.getItem(Tables.CONFIG, ConfigKeys.INSTALLED);
-    const publicKey = await persistence.getItem(Tables.CONFIG, ConfigKeys.PUBLIC_KEY);
-
-    return {
-      name,
-      description,
-      private: priv,
-      installed,
-      publicKey
-    }
-  }
 }

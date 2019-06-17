@@ -1,7 +1,7 @@
 import { graphql } from 'graphql';
 import { Persistence } from '../persistence/persistence';
 import { schema } from './schema';
-import { Tables } from './tables';
+import { Tables, ConfigKeys } from './tables';
 import { AuthService } from './services/auth';
 import { AdminService } from './services/admin';
 
@@ -10,17 +10,22 @@ export function createGraphQL(persistence: Persistence) {
     allProfiles: ({ start, count }) => {
       return persistence.getItems(Tables.PROFILES, start, count);
     },
-    configuration: () => {
-      return AdminService.getConfiguration(persistence);
-    },
     profile: ({ id }) => {
       return persistence.getItem(Tables.PROFILES, id);
     },
     register: ({ profile }) => {
       return AuthService.register(profile, persistence);
     },
-    activateServer: ({ owner, config }) => {
-      return AdminService.activateServer(owner, config, persistence);
+    activateServer: async ({ owner, config }) => {
+      await AdminService.activateServer(owner, config, persistence);
+      return config;
+    },
+    Configuration: {
+      name: () => persistence.getItem(Tables.CONFIG, ConfigKeys.NAME),
+      description: () => persistence.getItem(Tables.CONFIG, ConfigKeys.DESCRIPTION),
+      private: () => persistence.getItem(Tables.CONFIG, ConfigKeys.PRIVATE),
+      installed: () => persistence.getItem(Tables.CONFIG, ConfigKeys.INSTALLED),
+      publicKey: () => persistence.getItem(Tables.CONFIG, ConfigKeys.PUBLIC_KEY),
     }
   };
   return (query: any, context: any, variables: any) =>

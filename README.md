@@ -30,4 +30,3 @@ const response = graphql(query, context, variables);
 // Get the result
 console.log(response.data.profile);
 ```
-
