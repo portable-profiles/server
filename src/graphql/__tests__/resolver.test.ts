@@ -70,7 +70,6 @@ test('register a profile and perform basic actions against it', async () => {
 
   // Activate the server
   const activateResult = await graphql(ActivateMutation, {}, { owner: adminProfile });
-  
 
   // Create a profile and convert it to JSON
   const alice = new Profile();
