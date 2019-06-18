@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/paladin-privacy/server.git"
+    "url": "git+ssh://git@github.com/portable-profiles/server.git"
   },
   "author": "",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/paladin-privacy/server/issues"
+    "url": "https://github.com/portable-profiles/server/issues"
   },
-  "homepage": "https://github.com/paladin-privacy/server#readme",
+  "homepage": "https://github.com/portable-profiles/server#readme",
   "dependencies": {
     "@portable-profiles/profiles": "0.0.11",
     "graphql": "^14.3.1",
