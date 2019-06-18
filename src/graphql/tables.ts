@@ -1,7 +1,6 @@
-
 export enum Tables {
-  CONFIG = 'paladin_config',
-  PROFILES = 'paladin_profiles'
+  CONFIG = 'portable_profiles_config',
+  PROFILES = 'portable_profiles_profiles',
 }
 
 export enum ConfigKeys {
@@ -10,5 +9,5 @@ export enum ConfigKeys {
   DESCRIPTION = 'description',
   PRIVATE = 'private',
   PUBLIC_KEY = 'publicKey',
-  PRIVATE_KEY = 'privateKey'
+  PRIVATE_KEY = 'privateKey',
 }

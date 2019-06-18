@@ -1,6 +1,6 @@
-# Paladin Server
+# Portable Profile Server
 
-This library is a generic Typescript implementation of the Paladin Server API. It includes all of the logic for managing a Paladin server, without specifically integrating that logic to a particular server environment. 
+This library is a generic Typescript implementation of the Portable Profile Server API. It includes all of the logic for managing a Portable Profile server, without specifically integrating that logic to a particular server environment. 
 
 To make queries against the server:
 

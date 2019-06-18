@@ -1,7 +1,7 @@
-import { Profile, Fields, Visibility } from "@paladin-privacy/profiles";
-import { createGraphQL } from "../resolver";
+import { Profile, Fields, Visibility } from '@portable-profiles/profiles';
+import { createGraphQL } from '../resolver';
 import { MemoryPersistence } from '../../persistence/memory-persistence';
-import { Tables } from "../tables";
+import { Tables } from '../tables';
 
 const TEST_NAME = 'Test server';
 const TEST_DESCRIPTION = 'Server for testing';
@@ -79,12 +79,16 @@ test('register a profile and perform basic actions against it', async () => {
     name: TEST_NAME,
     description: TEST_DESCRIPTION,
     domain: TEST_DOMAIN,
-    private: true
+    private: true,
   };
-  const activateResult = await graphql(ActivateMutation, {}, {
-    owner: adminProfile,
-    config
-  });
+  const activateResult = await graphql(
+    ActivateMutation,
+    {},
+    {
+      owner: adminProfile,
+      config,
+    }
+  );
   expect(activateResult.data.activateServer).toEqual(config);
 
   // Create a profile and convert it to JSON
@@ -100,9 +104,17 @@ test('register a profile and perform basic actions against it', async () => {
   verifyProfile(registerResult.data.register, alice);
 
   // Verify register in database
-  expect(memory.database[Tables.PROFILES][alice.getId()])
-    .toEqual(registerResult.data.register);
+  expect(memory.database[Tables.PROFILES][alice.getId()]).toEqual(
+    registerResult.data.register
+  );
 
-  const profileResult = await graphql(GetProfileQuery, {}, { id: alice.getId() });
+  // Get the profile
+  const profileResult = await graphql(
+    GetProfileQuery,
+    {},
+    { id: alice.getId() }
+  );
   verifyProfile(profileResult.data.profile, alice);
+
+  // Log in as the profile
 });

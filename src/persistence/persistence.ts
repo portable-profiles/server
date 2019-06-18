@@ -1,9 +1,8 @@
-
 /**
  * This interface defines the database calls that are needed
- * to implement a paladin server implementation.
+ * to implement a portable profile server implementation.
  */
-export interface Persistence {
+export interface IPersistence {
   initialize();
   addItem(table: string, id: string, data: any): Promise<any>;
   setItem(table: string, id: string, data: any): Promise<any>;

@@ -1,10 +1,15 @@
 {
-  "name": "@paladin-privacy/server",
-  "version": "0.0.1",
-  "description": "Server for the distributed social network Paladin",
+  "name": "@portable-profiles/server",
+  "version": "0.0.2",
+  "description": "Server for the publishing portable profiles",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage"
+    "format": "prettier --write \"./src/**/*.{js,jsx,json,ts,tsx}\"",
+    "format:check": "prettier --check \"./src/**/*.{js,jsx,json,ts,tsx}\"",
+    "lint": "tslint --fix src/**/*.{js,jsx,ts,tsx}",
+    "lint:check": "tslint src/**/*.{js,jsx,ts,tsx}",
+    "test": "jest --coverage",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -17,7 +22,7 @@
   },
   "homepage": "https://github.com/paladin-privacy/server#readme",
   "dependencies": {
-    "@paladin-privacy/profiles": "0.0.10",
+    "@portable-profiles/profiles": "0.0.11",
     "graphql": "^14.3.1",
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^4.0.4",
@@ -27,6 +32,8 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",
-    "ts-jest": "^24.0.2"
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.17.0"
   }
 }

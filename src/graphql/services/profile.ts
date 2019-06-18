@@ -1,4 +1,4 @@
-import { Profile, Fields } from '@paladin-privacy/profiles';
+import { Profile, Fields } from '@portable-profiles/profiles';
 import { AccessLevel } from '../models';
 
 export interface ProfileRecord {
@@ -38,16 +38,18 @@ export class ProfileService {
     return profile;
   }
 
-  public static createProfileRecord(data: string, level: AccessLevel = AccessLevel.USER, banned = false): CreateProfileResponse {
+  public static createProfileRecord(
+    data: string,
+    level: AccessLevel = AccessLevel.USER,
+    banned = false
+  ): CreateProfileResponse {
     const profile = ProfileService.parseProfile(data);
 
     // Get the profile's nickname
     let nickname = null;
     try {
       nickname = profile.getField(Fields.Nickname);
-    } catch (error) {
-
-    }
+    } catch (error) {}
 
     // Create the database object
     const profileObject = profile.getProfile();
@@ -60,7 +62,7 @@ export class ProfileService {
       modifiedOn: profileObject.body.modifiedOn,
       data,
       banned,
-      level
+      level,
     };
 
     return { profile, profileRecord };

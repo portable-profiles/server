@@ -42,13 +42,12 @@ export const schema = buildSchema(`
   }
 
   type AuthChallenge {
-    token: String
+    challenge: String
   }
 
   input AuthResponseInput {
-    id: String
-    token: String
-    signature: String
+    challenge: String!
+    signature: String!
   }
 
   input SessionInput {
